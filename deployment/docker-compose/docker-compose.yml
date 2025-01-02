@@ -5,9 +5,6 @@ services:
     image: openhab/openhab-cloud:latest
     build:
       context: ../..
-      # Uncomment to customize timezone
-      #args:
-      #  TZ: America/Los_Angeles
     volumes:
     - ./config.json.template:/opt/openhabcloud/config.json.template
     depends_on:
@@ -17,36 +14,24 @@ services:
     environment:
     - DOMAIN_NAME
     - EXPRESS_KEY
-    labels:
-    - "traefik.enable=true"
-    - "traefik.frontend.rule=Host:${DOMAIN_NAME}"
-    - "traefik.port=3000"
-    - "traefik.protocol=http"
+    ports:
+      - "80:3000"  # Expose the internal port 3000 as 80 on the host
 
   mongodb:
     image: mongo:4
     volumes:
     - mongo-data:/data/db
     restart: always
+    ports:
+      - "27017:27017"  # Expose MongoDB default port 27017
 
   redis:
     image: bitnami/redis:latest
     environment:
     - REDIS_PASSWORD=123_openHAB
     restart: always
-
-  traefik:
-    image: traefik:1.7
     ports:
-    - "443:443"
-    - "80:80"
-    - "8080:8080"
-    volumes:
-    - ./traefik.toml:/etc/traefik/traefik.toml:ro
-    - /var/run/docker.sock:/var/run/docker.sock
-    - traefik-data:/data
-    command:
-    - "--acme.email=${EMAIL}"
+      - "6379:6379"  # Expose Redis default port 6379
 
 volumes:
   mongo-data:

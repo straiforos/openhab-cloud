@@ -1,8 +1,8 @@
 {
     "system": {
       "host": "${DOMAIN_NAME}",
-      "port": "443",
-      "protocol": "https",
+      "port": "8080",
+      "protocol": "http",
       "logger" : {
         "type": "console"
       },
@@ -46,5 +46,5 @@
         "terms" : "",
         "policy": ""
     },
-    "registration_enabled": false
+    "registration_enabled": true
 }

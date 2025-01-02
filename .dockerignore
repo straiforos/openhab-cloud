@@ -4,6 +4,6 @@ docs
 logs
 test
 Dockerfile
-config*.json
+# config*.json
 .*
 *.log

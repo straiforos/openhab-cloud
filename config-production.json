@@ -1,6 +1,6 @@
 {
     "system": {
-      "host": "<your-openhab-cloud-host>",
+      "host": "localhost:8080",
       "listenIp": "0.0.0.0",
       "port": "443",
       "protocol": "https",
@@ -14,7 +14,7 @@
       "muteNotifications": false
     },
     "express":{
-      "key" : "some express key"
+      "key" : "espressoshot"
     },
     "apn" : {
       "team": "PB1234567",
@@ -38,14 +38,11 @@
     },
     "mongodb": {
         "hosts": ["127.0.0.1"],
-        "db": "openhab",
-        "user": "",
-        "password": ""
+        "db": "openhab"
     },
     "redis": {
         "host": "127.0.0.1",
-        "port": "6379",
-        "password": "password"
+        "port": "6379"
     },
     "mailer": {
         "host" : "smtp",
