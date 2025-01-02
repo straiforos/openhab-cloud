@@ -6,7 +6,7 @@ RUN addgroup -S openhabcloud && \
     adduser -H -S -G openhabcloud openhabcloud
 
 # Add proper timezone
-ARG TZ=Europe/Berlin
+ARG TZ=America/New_York
 RUN ln -s /usr/share/zoneinfo/${TZ} /etc/localtime && \
     echo "${TZ}" > /etc/timezone
 

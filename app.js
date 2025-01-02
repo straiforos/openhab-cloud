@@ -90,7 +90,13 @@ cachegoose(mongoose, {
 
 // Try to setup a mongodb connection, otherwise stopping
 var mongoConnect = new MongoConnect(system);
-mongoConnect.connect(mongoose);
+const options = {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,  // Add this line
+    useCreateIndex: true,
+    useFindAndModify: false
+};
+mongoConnect.connect(mongoose, options);
 mongooseTypes.loadTypes(mongoose);
 
 var app = express();
@@ -143,7 +149,7 @@ app.use(passport.session());
 //we need to know if this is a proxy connection or not (home/remote), other middleware depends on it.
 app.use(function (req, res, next) {
     var host = req.headers.host;
-    //  console.log(host);
+     console.log(host);
     if (!host) {
         next(); // No host in header, just go ahead
     }
